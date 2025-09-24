@@ -7,32 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 	<Grid>
-		<!-- Forint összeg TextBox -->
 		<TextBox Name="AmountTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="30" Margin="10,10,0,0" />
 
-		<!-- Valuta ComboBox -->
 		<ComboBox Name="CurrencyComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="220,10,0,0">
 			<ComboBoxItem Content="EUR" />
 			<ComboBoxItem Content="USD" />
 			<ComboBoxItem Content="GBP" />
 		</ComboBox>
 
-		<!-- Átváltás gomb -->
 		<Button Name="ConvertButton" Content="Átváltás" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="30" Margin="360,10,0,0" Click="ConvertButton_Click"/>
 
-		<!-- Törlés gomb -->
 		<Button Name="ClearButton" Content="Törlés" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="30" Margin="450,10,0,0" Click="ClearButton_Click"/>
 
-		<!-- Átváltás fordítva CheckBox -->
 		<CheckBox Name="ReverseCheckBox" Content="Átváltás fordítva" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0"/>
 
-		<!-- Kezelési díj CheckBox -->
 		<CheckBox Name="FeeCheckBox" Content="Kezelési díj 5%" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0"/>
 
-		<!-- Eredmény TextBlock -->
 		<TextBlock Name="ResultTextBlock" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="30" Margin="10,120,0,0" FontSize="16" />
 
-		<!-- Történeti ListBox -->
 		<ListBox Name="HistoryListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Height="150" Margin="10,160,0,0" />
 	</Grid>
 </Window>

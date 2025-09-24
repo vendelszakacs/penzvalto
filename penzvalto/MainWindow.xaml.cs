@@ -13,7 +13,6 @@ namespace penzvalto
 {
 	public partial class MainWindow : Window
 	{
-		// Valuták átváltási arányai
 		private Dictionary<string, double> exchangeRates = new Dictionary<string, double>
 		{
 			{ "EUR", 400 },
@@ -27,45 +26,37 @@ namespace penzvalto
 			this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
 		}
 
-		// Átváltás gomb eseménykezelője
 		private void ConvertButton_Click(object sender, RoutedEventArgs e)
 		{
 			try
 			{
-				// Beírt összeg és választott valuta
 				double amount = Convert.ToDouble(AmountTextBox.Text);
 				string selectedCurrency = ((ComboBoxItem)CurrencyComboBox.SelectedItem).Content.ToString();
 
-				// Beállítások: fordított átváltás és kezelési díj
 				bool isReverse = ReverseCheckBox.IsChecked.GetValueOrDefault(false);
 				bool applyFee = FeeCheckBox.IsChecked.GetValueOrDefault(false);
 
 				double result = 0;
 
-				// Kezelési díj alkalmazása, ha be van jelölve
 				if (applyFee)
 				{
-					amount *= 0.95;  // 5% díj
+					amount *= 0.95;
 				}
 
-				// Átváltás (forint → valuta vagy valuta → forint)
-				if (isReverse)  // Fordítva: valuta → forint
+				if (isReverse)
 				{
 					result = amount * exchangeRates[selectedCurrency];
 				}
-				else  // Alap eset: forint → valuta
+				else
 				{
 					result = amount / exchangeRates[selectedCurrency];
 				}
 
-				// Eredmény kiírása
 				ResultTextBlock.Text = $"{amount} Ft = {result} {selectedCurrency}";
 
-				// Történeti lista hozzáadása
 				HistoryListBox.Items.Add($"{amount} Ft → {result} {selectedCurrency}");
 
-				// Több valutás átváltás
-				if (!isReverse)  // Csak ha forintból valutába történik
+				if (!isReverse)
 				{
 					string multipleCurrencies = $"{amount} Ft = ";
 					foreach (var currency in exchangeRates.Keys)
@@ -83,7 +74,6 @@ namespace penzvalto
 			}
 		}
 
-		// Törlés gomb eseménykezelője
 		private void ClearButton_Click(object sender, RoutedEventArgs e)
 		{
 			AmountTextBox.Clear();
@@ -91,7 +81,6 @@ namespace penzvalto
 			HistoryListBox.Items.Clear();
 		}
 
-		// Billentyűparancsok (Enter → átváltás, Esc → törlés)
 		private void MainWindow_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
